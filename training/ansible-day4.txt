@@ -1,0 +1,7 @@
+set vim to yaml:
+----------------
+- create file ~/.vmrc
+- add this to it without single quotes 'autocmd FileType yaml setlocal ai ts=2 sw=2 et'
+- et = enable tab (by default tabs are disabled in vim)
+- ai = auto indentation
+- ts = tab space
