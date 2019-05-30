@@ -1,0 +1,8 @@
+---
+- name: Displaying facts variables
+  hosts: servera.lab.example.com
+  gather_facts: false
+  tasks:
+  - name: Displaying facts
+    debug:
+      msg: "The version of kernel is {{ ansible_facts.kernel }} and the hostaname is {{ ansible_facts.hostname }} and the ip address is {{ ansible_facts.default_ipv4.address }} "

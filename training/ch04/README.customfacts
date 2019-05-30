@@ -1,0 +1,19 @@
+
+#goto serverb
+
+mkdir -p /etc/ansible/facts.d
+
+# Create the below file
+
+vim  hardware.fact
+[asset]
+class = server
+id = 1234
+dc = uswest
+installedby = Shashi
+
+#Save the file
+
+# run the command
+
+ansible serverb.lab.example.com -m setup -a "filter=ansible_local"

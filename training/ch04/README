@@ -1,0 +1,9 @@
+
+# Demo for overwriting variable deenition from command line
+ap 03-Host-GroupVars.yml -e package=gnuplot
+ap 03-Host-GroupVars.yml -e package1=apache
+
+# Demo final deployment with variables
+
+
+ap 06-DeployVars.yml -b -e 'package1=mutt'

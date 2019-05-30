@@ -1,0 +1,12 @@
+# Simple variable defenition in Ansible
+---
+- name: A simple varable defenition with user defined in inventory file
+  hosts: local
+  vars:
+    user: smile
+    home: /home/smile
+  tasks:
+    - name: Task to display just a message.
+      debug:
+        msg: "User  {{ user }} has his home directory as {{home}}"
+
