@@ -1,0 +1,60 @@
+users:
+------
+root => redhat
+student => student
+devops => redhat
+
+user-machine:
+--------------
+root -> X
+kios => redhat
+
+links:
+-------
+http://www.iverson.training/ifs/firstday.php
+Shubham Shrivastava
+
+commands:
+---------
+rht-vmctl start all
+rht-vmctl status all
+
+ansible all --list-hosts
+
+ansible lab -m user -a 'name=john state=present'
+ansible lab -m yum -a 'name=httpd state=latest'
+
+-a = attributes
+-b at the end of the command is to become
+
+other alternatives:
+--------------------
+- puppet-agent
+
+- ansible works on ssh
+- ssh port = 22
+- ansible is written in python
+- ansible uses yaml (.yml) (are called playbooks)
+- all hosts need to be inside inventory file
+- ansible configuration file for preferences (recommended to have one config per project)
+- plugins
+	- connection (ssh, winrm, paramicko, smart, docker)
+	- integration
+
+ansible sections:
+--------------------
+1. defaults
+2. privilage_escalation
+3. ssh_connection
+4. accelerate
+5. galaxy
+
+colors:
+-------
+blue - command
+green - success without change
+yelloe - success with change
+purple - warning
+red - error
+
+

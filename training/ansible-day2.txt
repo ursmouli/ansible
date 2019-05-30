@@ -1,0 +1,12 @@
+scopes of variables:
+--------------------
+1. CLI scope (global)
+2. play scope
+3. task scope
+4. host scope (declared insdie inventory)
+
+variable modules:
+-------------------
+- var (can use every where)
+- include_vars (only in task scope)
+- vars_file (only in play scope)

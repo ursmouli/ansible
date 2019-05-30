@@ -1,0 +1,36 @@
+grouping key names:
+-------------------
+- ungrouped
+- grouped (works till version 2.5 only)
+- all | *
+
+adhoc commands:
+---------------
+> ansible lab,class --list-host
+> ansible 'lab,&class' --list-host (display common hosts in both i.e. union)
+> ansible-playbook --tags=untagged play.yml (executes untagged only)
+> ansible-playbook --tags=tagged play.yml (executes tagged only)
+
+
+dynamic inventory:
+--------------------
+- program must return inventory in json format (can be written in any programming lang)
+
+import_playbook:
+-----------------
+- including more imports and inlcudes might slightly slowdown performance
+- once import_playbook added then we cannot include host, tasks and handlers cause all those are included in imported playbook
+
+include_task or import_task:
+-----------------------------
+- loops cannot be used in place where we use import_task
+
+roles:
+------
+
+notes:
+------
+- when we apply condtion on block it will applied to individual task inside block
+- tags in task is important to run specific task in playbook
+
+
