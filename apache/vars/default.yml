@@ -1,0 +1,5 @@
+app_user: "mouli"
+http_host: "mydomain.local"
+http_conf: "mydomain.conf"
+http_port: 80
+disable_default: true
