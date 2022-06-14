@@ -1,0 +1,9 @@
+---
+- name: Update json using script
+  hosts: localhost
+  # become: true
+  tasks:
+    - name: Run script to insert key to json file
+      script: insert_json.py
+      args:
+        executable: python

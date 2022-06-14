@@ -1,0 +1,10 @@
+---
+# insert content to json files
+- name: Read json file
+  hosts: localhost
+  tasks:
+    - debug:
+        msg: Imports playbook update_json.yml
+
+- import_playbook: update_json_script.yml
+    

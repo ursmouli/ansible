@@ -1,0 +1,23 @@
+---
+- name: Display json content
+  hosts: localhost
+  tasks:
+    - name: load json file
+      include_vars:
+        file: data.json
+        name: imported_var
+
+    - debug:
+        var: imported_var
+
+    - name: Append more keys
+      set_fact:
+        imported_var: "{{ imported_var | default([]) | combine({ 'hello': 'world' }) }}"
+
+    - debug:
+        var: imported_var
+
+    - name: write var to file
+      copy: 
+        content: "{{ imported_var | to_nice_json }}" 
+        dest: /vagrant/update_json/data.json
