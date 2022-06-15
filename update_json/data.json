@@ -3,6 +3,17 @@
     "type":"donut",
     "name":"Cake",
     "ppu":0.55,
+    "logs": {
+      "logs_collected": {
+         "files": {
+            "collect_list": [
+               {
+                  "file_path": "one"
+               }
+            ]
+         }
+      }
+    },
     "batters":{
        "batter":[
           {

@@ -12,7 +12,8 @@
 
     - name: Append more keys
       set_fact:
-        imported_var: "{{ imported_var | default([]) | combine({ 'hello': 'world' }) }}"
+        # "{{ imported_var | default([]) | combine({'file_path': 'world' }) }}"
+        imported_var: '{{ imported_var | combine({"logs": {"logs_collected": {"files": {"collect_list": {"file_path": "two"}}}}}, recursive=True) }}'
 
     - debug:
         var: imported_var
@@ -20,4 +21,4 @@
     - name: write var to file
       copy: 
         content: "{{ imported_var | to_nice_json }}" 
-        dest: /vagrant/update_json/data.json
+        dest: /vagrant/update_json/data-new.json
