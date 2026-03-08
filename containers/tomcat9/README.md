@@ -1,8 +1,8 @@
 ## Create image
-`docker build -t ubi8-minimal-tomcat:9 .`
+`docker build --build-arg TOMCAT_VER=9.0.115 -t ubi8-minimal-tomcat:9 .`
 
 ## Run container
-`docker run -d -p 8080:8080 --name my-tomcat-server custom-tomcat:9`
+`docker run -d -p 8080:8080 --name my-tomcat-server ubi8-minimal-tomcat:9`
 
 ## Runtime (Flexible)
 ```

@@ -21,7 +21,7 @@ RUN mkdir -p $CATALINA_HOME
 
 # Add the local Tomcat tar.gz file and extract it to the desired location
 # ADD automatically extracts the .tar.gz into the destination
-ADD apache-tomcat-${TOMCAT_VER}.tar.gz /opt/
+ADD files/apache-tomcat-${TOMCAT_VER}.tar.gz /opt/
 
 RUN mv /opt/apache-tomcat-${TOMCAT_VER}/* $CATALINA_HOME && \
     rm -rf /opt/apache-tomcat-${TOMCAT_VER}
