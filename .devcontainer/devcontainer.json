@@ -1,0 +1,21 @@
+{
+  "name": "Ansible Tomcat Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.ansible",
+        "ms-azuretools.vscode-docker",
+        "vscjava.vscode-java-pack"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "postCreateCommand": "ansible --version",
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "remoteUser": "vscode",
+}
