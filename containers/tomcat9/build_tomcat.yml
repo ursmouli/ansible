@@ -1,0 +1,33 @@
+---
+- name: Build Custom UBI8 Tomcat Image
+  hosts: localhost
+  connection: local
+  vars:
+    tomcat_version: "9.0.115"
+    tomcat_url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
+    build_path: "./files"
+
+  tasks:
+    - name: Ensure the files directory exists
+      file:
+        path: "{{ build_path }}"
+        state: directory
+        mode: '0755'
+
+    - name: Download Apache Tomcat binary
+      get_url:
+        url: "{{ tomcat_url }}"
+        dest: "{{ build_path }}/apache-tomcat-{{ tomcat_version }}.tar.gz"
+        mode: '0644'
+      register: download_result
+
+    - name: Build Docker image using the local JRE base
+      community.docker.docker_image:
+        name: "ubi8-tomcat-local:{{ tomcat_version }}"
+        build:
+          path: .
+          # dockerfile: Dockerfile.jre
+          args:
+            TOMCAT_VER: "{{ tomcat_version }}"
+        source: build
+      when: download_result is succeeded

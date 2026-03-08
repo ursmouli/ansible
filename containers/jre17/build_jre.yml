@@ -1,0 +1,38 @@
+---
+- name: Build Custom UBI8 JRE Image
+  hosts: localhost
+  connection: local
+  vars:
+    jre_version: "17.0.18"
+    jre_build: "8"
+    # Example download URL for Eclipse Temurin JRE 17
+    jre_url: "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-${jre_version}/OpenJDK17U-jre_x64_linux_hotspot_${jre_version}_${jre_build}.tar.gz"
+    build_dir: "./files"
+    jre_filename: "jre-${jre_version}-linux-x64.tar.gz"
+
+  tasks:
+    - name: Create build directory
+      file:
+        path: "{{ build_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Download JRE binary if not present
+      get_url:
+        url: "{{ jre_url }}"
+        dest: "{{ build_dir }}/{{ jre_filename }}"
+        mode: '0644'
+      register: jre_download
+
+    - name: Build JRE Docker Image
+      community.docker.docker_image:
+        name: "custom-ubi8-minimal-jre:{{ jre_version }}-{{ jre_build }}"
+        build:
+          path: .
+          # dockerfile: Dockerfile.jre
+          # Pass the filename as an argument if your Dockerfile needs it
+          args:
+            JRE_VERSION: "{{ jre_version }}"
+            JRE_FILE: "{{ jre_filename }}"
+        source: build
+      when: jre_download is succeeded
